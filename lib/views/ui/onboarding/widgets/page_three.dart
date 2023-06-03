@@ -6,9 +6,8 @@ import 'package:jobhub/views/common/exports.dart';
 import 'package:jobhub/views/common/height_spacer.dart';
 import 'package:jobhub/views/ui/auth/login.dart';
 import 'package:jobhub/views/ui/auth/signup.dart';
+import 'package:jobhub/views/ui/mainscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../constants/app_constants.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({super.key});
@@ -45,7 +44,7 @@ class PageThree extends StatelessWidget {
                         await SharedPreferences.getInstance();
 
                     await preferences.setBool('entryPoint', true);
-                    Get.to(() => const LoginPage());
+                    Get.to(() => const MainScreen());
                   },
                   text: "Login",
                   width: width * 0.4,

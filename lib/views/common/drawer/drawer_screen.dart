@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:jobhub/constants/app_constants.dart';
 import 'package:jobhub/controllers/exports.dart';
 import 'package:provider/provider.dart';
+
+import '../app_style.dart';
+import '../reusable_text.dart';
+import '../width_spacer.dart';
 
 class DrawerScreen extends StatefulWidget {
   final ValueSetter indexSetter;
@@ -31,16 +36,43 @@ class _DrawerScreenState extends State<DrawerScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                drawerItem(
-                    index: 0,
-                    title: 'Home',
-                    icon: AntDesign.home,
-                    zoomNotifier.currentIndex == 0 ? kLight : kLightGrey)
+                drawerItem(AntDesign.home, 'Home', 0,
+                    zoomNotifier.currentIndex == 0 ? kLight : kLightGrey),
+                drawerItem(Ionicons.chatbubble_outline, 'Chat', 1,
+                    zoomNotifier.currentIndex == 1 ? kLight : kLightGrey),
+                drawerItem(MaterialIcons.bookmarks, 'Bookmarks', 2,
+                    zoomNotifier.currentIndex == 2 ? kLight : kLightGrey),
+                drawerItem(MaterialCommunityIcons.devices, 'Device Mgmt', 3,
+                    zoomNotifier.currentIndex == 3 ? kLight : kLightGrey),
+                drawerItem(FontAwesome5Regular.user_circle, 'Profile', 4,
+                    zoomNotifier.currentIndex == 4 ? kLight : kLightGrey),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget drawerItem(IconData icon, String text, int index, Color color) {
+    return GestureDetector(
+      onTap: null,
+      child: Container(
+        margin: EdgeInsets.only(left: 20.w, bottom: 20.h),
+        child: Row(
+          children: [
+            Icon(
+              icon,
+              color: color,
+            ),
+            const WidthSpacer(
+              width: 12,
+            ),
+            ReusableText(
+                text: text, style: appstyle(12, color, FontWeight.bold))
+          ],
+        ),
+      ),
     );
   }
 }

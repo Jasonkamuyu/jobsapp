@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jobhub/constants/app_constants.dart';
 import 'package:jobhub/views/common/exports.dart';
 
 class CustomButton extends StatelessWidget {
